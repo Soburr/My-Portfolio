@@ -368,6 +368,48 @@ h1, h2, h3, h4, h5, h6 {
           transform: rotate(306deg);
 }
 
+#skills .skills-progress .skill-wrapper.progress-50 .progress {
+  clip: rect(auto, auto, auto, auto);
+}
+
+#skills .skills-progress .skill-wrapper.progress-50 .progress .right-side {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+#skills .skills-progress .skill-wrapper.progress-50 .progress .left-side {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+#skills .skills-progress .skill-wrapper.progress-80 .progress {
+  clip: rect(auto, auto, auto, auto);
+}
+
+#skills .skills-progress .skill-wrapper.progress-80 .progress .right-side {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+#skills .skills-progress .skill-wrapper.progress-80 .progress .left-side {
+  -webkit-transform: rotate(290deg);
+          transform: rotate(290deg);
+}
+
+#skills .skills-progress .skill-wrapper.progress-60 .progress {
+  clip: rect(auto, auto, auto, auto);
+}
+
+#skills .skills-progress .skill-wrapper.progress-60 .progress .right-side {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+#skills .skills-progress .skill-wrapper.progress-60 .progress .left-side {
+  -webkit-transform: rotate(200deg);
+          transform: rotate(200deg);
+}
+
 #experience {
   padding: 50px 0px;
 }
