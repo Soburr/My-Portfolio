@@ -1,318 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Firmbee.com - Free Project Management Platform for remote teams">
-    <title>Newton</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/0e035b9984.js" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/0e035b9984.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://use.typekit.net/rrg4put.css">
-    <link rel="stylesheet" href="css/main.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Adebesin Adewunmi — Backend Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0d0c08;
+  --paper:#f5f2eb;
+  --paper2:#ede9df;
+  --lime:#c8f03c;
+  --rust:#c4401a;
+  --muted:#7a7567;
+  --rule:rgba(13,12,8,0.12);
+  --serif:'DM Serif Display',Georgia,serif;
+  --mono:'DM Mono',monospace;
+  --sans:'Instrument Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;cursor:crosshair}
+a{color:inherit;text-decoration:none}
+
+/* CURSOR DOT */
+#dot{position:fixed;width:8px;height:8px;background:var(--lime);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;mix-blend-mode:multiply}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:var(--paper);border-bottom:1px solid var(--rule)}
+.nav-name{font-family:var(--serif);font-size:1.1rem;letter-spacing:-0.01em}
+.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-badge{font-family:var(--mono);font-size:11px;background:var(--lime);color:var(--ink);padding:4px 10px;border-radius:2px;letter-spacing:0.05em}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;padding-top:60px}
+.hero-main{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--rule)}
+.hero-left{padding:4rem 2.5rem;border-right:1px solid var(--rule);display:flex;flex-direction:column;justify-content:space-between}
+.hero-index{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:auto;padding-bottom:3rem}
+.hero-title{font-family:var(--serif);font-size:clamp(3rem,5.5vw,5rem);line-height:0.95;letter-spacing:-0.03em;margin-bottom:2rem}
+.hero-title em{font-style:italic;color:var(--rust)}
+.hero-loc{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.08em}
+.hero-right{padding:4rem 2.5rem;display:flex;flex-direction:column;justify-content:space-between;background:var(--paper2)}
+.hero-bio{font-size:1rem;line-height:1.8;color:var(--ink);max-width:400px;margin-bottom:3rem}
+.hero-bio strong{font-weight:600}
+.hero-actions{display:flex;flex-direction:column;gap:0.75rem}
+.btn-block{display:block;padding:1rem 1.5rem;border:1px solid var(--rule);font-family:var(--mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;transition:background .15s,color .15s;border-radius:2px}
+.btn-block:hover{background:var(--ink);color:var(--paper)}
+.btn-block.filled{background:var(--ink);color:var(--paper)}
+.btn-block.filled:hover{background:var(--rust)}
+.hero-bottom{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--rule)}
+.hero-stat{padding:1.5rem 2.5rem;border-right:1px solid var(--rule)}
+.hero-stat:last-child{border-right:none}
+.stat-n{font-family:var(--serif);font-size:2.2rem;color:var(--rust)}
+.stat-l{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+
+/* SECTION WRAPPER */
+.section{max-width:1100px;margin:0 auto;padding:5rem 2.5rem}
+.sec-header{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--rule);padding-bottom:1rem;margin-bottom:3rem}
+.sec-num{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.1em}
+.sec-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-0.02em}
+
+/* SKILLS */
+.stack-row{display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--rule);padding:1.25rem 0;align-items:start;gap:2rem}
+.stack-row:last-child{border-bottom:none}
+.stack-cat{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);padding-top:2px}
+.stack-pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font-family:var(--mono);font-size:12px;padding:4px 12px;border:1px solid var(--rule);border-radius:2px;color:var(--ink);background:transparent;transition:background .15s}
+.pill:hover{background:var(--lime)}
+
+/* EXPERIENCE */
+.exp-item{display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--rule);padding:2.5rem 0;gap:2rem}
+.exp-item:last-child{border-bottom:none}
+.exp-company{font-family:var(--serif);font-size:1.05rem;margin-bottom:4px}
+.exp-date{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.06em}
+.exp-role{font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.75rem}
+.exp-points{list-style:none;margin-bottom:1rem}
+.exp-points li{font-size:14px;line-height:1.7;color:#3a3830;padding:2px 0;padding-left:1.2rem;position:relative}
+.exp-points li::before{content:'—';position:absolute;left:0;color:var(--muted);font-size:12px}
+.win{display:inline-block;margin-top:0.5rem;font-family:var(--mono);font-size:11px;background:var(--lime);color:var(--ink);padding:3px 10px;border-radius:2px;letter-spacing:0.04em}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule)}
+.proj-card{padding:2rem;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);transition:background .2s}
+.proj-card:nth-child(3n){border-right:none}
+.proj-card:nth-child(n+4){border-bottom:none}
+.proj-card:hover{background:var(--paper2)}
+.proj-num{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:0.1em;margin-bottom:1rem}
+.proj-name{font-family:var(--serif);font-size:1.2rem;letter-spacing:-0.01em;margin-bottom:0.6rem;line-height:1.2}
+.proj-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:1.25rem}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.25rem}
+.proj-tag{font-family:var(--mono);font-size:10px;letter-spacing:0.06em;color:var(--muted)}
+.proj-link{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--rust);display:inline-flex;align-items:center;gap:6px;transition:gap .15s}
+.proj-link:hover{gap:10px}
+
+/* EDUCATION */
+.edu-block{display:grid;grid-template-columns:200px 1fr;padding:2rem 0;border-bottom:1px solid var(--rule);gap:2rem;align-items:start}
+.edu-block:last-child{border-bottom:none}
+.edu-year{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.06em}
+.edu-name{font-family:var(--serif);font-size:1.1rem;margin-bottom:2px}
+.edu-sub{font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+/* CONTACT */
+#contact-section{background:var(--ink);color:var(--paper)}
+.contact-inner{max-width:1100px;margin:0 auto;padding:5rem 2.5rem}
+.contact-big{font-family:var(--serif);font-size:clamp(3rem,7vw,6rem);line-height:0.95;letter-spacing:-0.04em;margin-bottom:3rem}
+.contact-big em{font-style:italic;color:var(--lime)}
+.contact-row{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(245,242,235,0.12);padding-top:2rem;gap:2rem}
+.c-label{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,242,235,0.4);margin-bottom:6px}
+.c-val{font-size:14px;color:var(--paper);transition:color .2s}
+.c-val:hover{color:var(--lime)}
+.c-val a{color:inherit}
+
+footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding:1.5rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
+footer span{font-family:var(--mono);font-size:11px;color:rgba(245,242,235,0.3);letter-spacing:0.06em}
+
+@media(max-width:768px){
+  .hero-main{grid-template-columns:1fr}
+  .hero-left{border-right:none;border-bottom:1px solid var(--rule);padding:2.5rem 1.5rem}
+  .hero-right{padding:2.5rem 1.5rem}
+  .hero-bottom{grid-template-columns:1fr 1fr}
+  .hero-stat{border-bottom:1px solid var(--rule)}
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .section{padding:3rem 1.5rem}
+  .stack-row,.exp-item,.edu-block{grid-template-columns:1fr}
+  .projects-grid{grid-template-columns:1fr}
+  .proj-card{border-right:none}
+  .proj-card:nth-child(n+4){border-bottom:1px solid var(--rule)}
+  .proj-card:last-child{border-bottom:none}
+  .contact-row{grid-template-columns:1fr 1fr}
+  .contact-big{font-size:clamp(2.2rem,8vw,4rem)}
+  .sec-header{flex-direction:column;gap:4px}
+  footer{flex-direction:column;gap:8px;text-align:center}
+}
+</style>
 </head>
-
 <body>
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">N</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-card-item">
-                        <a class="nav-link  active" href="#about">About me</a>
-                    </li>
-                    <li class="nav-card-item">
-                        <a class="nav-link" href="#bio">My bio</a>
-                    </li>
-                    <li class="nav-card-item">
-                        <a class="nav-link" href="#skills">Skills</a>
-                    </li>
-                    <li class="nav-card-item">
-                        <a class="nav-link" href="#experience">Experience</a>
-                    </li>
-                    <li class="nav-card-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ms-auto">
-                    <a class="nav-link btn btn-success py-2 px-4 text-nowrap" href="file/myResume.pdf"
-                        download="file/myResume.pdf">Download CV</a>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <main>
-        <!-- Intro -->
-        <section id="intro">
-            <div class="container">
-                <div class="text">
-                    <h1>Hi, I'm<br>
-                        <span class="green">Newton,</span><br>
-                        A Software Engineer.
-                    </h1>
-                    <p> I am a motivated and well inspired TALL stack (TailwindCSS, Alpine.JS, Laravel, Livewire) Engineer. </p>
-                    <a class="btn btn-success py-2" href="file/myResume.pdf" download="Adebesin's_resume">Download
-                        CV</a>
-                    <a class="btn btn-outline-success py-2" href="#contact">
-                        <img style="width: 20px;" src="img/icon/email.svg" alt="">
-                        <span>Contact Me</span>
-                    </a>
-                    <a class="scroll" href="#about"><img style="width: 20px;" src="img/icon/icon-scroll-down.svg"
-                            alt="">Scroll down</a>
-                </div>
-                <div class="img">
-                    <img src="img/Newton.jpeg" alt="">
-                </div>
-            </div>
-        </section>
 
+<div id="dot"></div>
 
-        <!-- About me -->
-        <section id="about">
-            <div class="about container">
-                <h6 class="section-title">About me</h6>
-                <div class="about-wrapper">
-                    <div class="left">
-                        <div>
-                            <img src="img/icon/woman-icon.svg" alt="">
-                            <h2><span class="green">3+ Years</span> Job
-                                Experience</h2>
-                        </div>
-                        <div>
-                            <img src="img/icon/projects-icon.svg" alt="">
-                            <h2><span class="green">20+</span> Projects
-                                Completed</h2>
-                        </div><br>
+<nav>
+  <div class="nav-name">Adebesin Adewunmi</div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Work</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact-section">Contact</a></li>
+    </ul>
+    <span class="nav-badge">Open to roles</span>
+  </div>
+</nav>
 
-                        <a class="btn btn-success py-2" href="//github.com/Soburr" target="_blank"
-                            style="margin-left: 70px; border-radius: 300px;">View My Github Page</a>
-                    </div>
-                    <div class="right">
-                        <h1>What are my strongest sides <span class="green">and skills?</span></h1>
-                        <p>Web app developer with 3+ years of experience working in a range of fast-paced, dynamic, and
-                            ever-changing, poised, professional, and product-oriented environments. Building and
-                            creating elegant APIs in <span class="green">PHP/Laravel,</span> integrating <span
-                                class="green">SQL/NoSQL / client-server apps,</span> and
-                            providing high-quality in-house tools to make mobile product creation, maintenance, and
-                            scaling easier are all examples of experience.
-                            I experiment and build open-source projects .</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-main">
+    <div class="hero-left">
+      <div class="hero-index">Portfolio — 2025 / Backend Engineer</div>
+      <div>
+        <h1 class="hero-title">I build<br><em>systems</em><br>that scale.</h1>
+        <div class="hero-loc">📍 Lagos, Nigeria</div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <p class="hero-bio">
+        I'm a <strong>Backend / Fullstack Engineer</strong> with 4+ years of experience shipping production-grade APIs, payment systems, and multi-portal platforms.<br><br>
+        My stack is <strong>PHP & Laravel</strong> at the core — with Vue.js, Livewire, and Tailwind CSS on the front. I've worked across fintech, eCommerce, SaaS, and edtech.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-block filled" href="mailto:adebesinnewton99@gmail.com">Get in touch →</a>
+        <a class="btn-block" href="https://github.com/Soburr" target="_blank">GitHub / Soburr</a>
+        <a class="btn-block" href="https://www.linkedin.com/in/adebesin-adewunmi-334897220/" target="_blank">LinkedIn Profile</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="hero-stat"><div class="stat-n">4+</div><div class="stat-l">Years shipping code</div></div>
+    <div class="hero-stat"><div class="stat-n">30%</div><div class="stat-l">API speed uplift</div></div>
+    <div class="hero-stat"><div class="stat-n">40%</div><div class="stat-l">Sales increase driven</div></div>
+    <div class="hero-stat"><div class="stat-n">6wk</div><div class="stat-l">MVP turnaround</div></div>
+  </div>
+</section>
 
-        <!-- My bio -->
-        <section id="bio">
-            <div class="bio container">
-                <!-- <div class="img">
-                    <img src="img/photo-bio.jpg" alt="">
-                </div> -->
-                <div class="text">
-                    <h6 class="section-title">My bio</h6>
-                    <h1><span class="green">Biography,<br></span> a few words</h1>
-                    <p>I'm a driven and experienced Software Engineer that wants to help businesses reach and surpass
-                        their goals. I have a track record of assisting businesses in improving sustainability, lowering
-                        overall costs, and configuring the most efficient and productive manufacturing methods.</p>
-                </div>
-            </div>
-        </section>
-        <!-- Skills -->
-        <section id="skills" class="text-center">
-            <div class="container">
-                <h6 class="section-title">Skills</h6>
-                <h1>My skill <span class="green">level</span></h1>
-                <div class="skills-progress ">
-                    <div class="skill-wrapper progress-85">
-                        <span class="label">85<span class="smaller">%</span></span>
-                        <div class="progress">
-                            <div class="left-side half-circle"></div>
-                            <div class="right-side half-circle"></div>
-                        </div>
-                        <div class="shadow"></div>
-                        <span class="skill-name">VANILLA PHP</span>
-                    </div>
-                    <div class="skill-wrapper progress-85">
-                        <span class="label">85<span class="smaller">%</span></span>
-                        <div class="progress">
-                            <div class="left-side half-circle"></div>
-                            <div class="right-side half-circle"></div>
-                        </div>
-                        <div class="shadow"></div>
-                        <span class="skill-name">LARAVEL</span>
-                    </div>
-                    <div class="skill-wrapper progress-80">
-                        <span class="label">80<span class="smaller">%</span></span>
-                        <div class="progress">
-                            <div class="left-side half-circle"></div>
-                            <div class="right-side half-circle"></div>
-                        </div>
-                        <div class="shadow"></div>
-                        <span class="skill-name">ALPINE.JS</span>
-                    </div>
-                    <div class="skill-wrapper progress-75">
-                        <span class="label">75<span class="smaller">%</span></span>
-                        <div class="progress">
-                            <div class="left-side half-circle"></div>
-                            <div class="right-side half-circle"></div>
-                        </div>
-                        <div class="shadow"></div>
-                        <span class="skill-name">TAILWIND</span>
-                    </div>
-                    <div class="skill-wrapper progress-75">
-                        <span class="label">75<span class="smaller">%</span></span>
-                        <div class="progress">
-                            <div class="left-side half-circle"></div>
-                            <div class="right-side half-circle"></div>
-                        </div>
-                        <div class="shadow"></div>
-                        <span class="skill-name">LIVEWIRE</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- SKILLS -->
+<div id="skills" class="section">
+  <div class="sec-header">
+    <span class="sec-num">01 —</span>
+    <h2 class="sec-title">Tech stack</h2>
+  </div>
+  <div class="stack-row"><div class="stack-cat">Backend</div><div class="stack-pills"><span class="pill">PHP</span><span class="pill">Laravel</span><span class="pill">REST APIs</span><span class="pill">PHPUnit</span><span class="pill">PestPHP</span></div></div>
+  <div class="stack-row"><div class="stack-cat">Frontend</div><div class="stack-pills"><span class="pill">Vue.js</span><span class="pill">Livewire</span><span class="pill">Alpine.js</span><span class="pill">Blade</span><span class="pill">Tailwind CSS</span><span class="pill">JavaScript</span></div></div>
+  <div class="stack-row"><div class="stack-cat">Databases</div><div class="stack-pills"><span class="pill">MySQL</span><span class="pill">PostgreSQL</span><span class="pill">Redis</span></div></div>
+  <div class="stack-row"><div class="stack-cat">Integrations</div><div class="stack-pills"><span class="pill">Paystack</span><span class="pill">Smile ID / KYC</span><span class="pill">OpenAI API</span><span class="pill">Scribe</span><span class="pill">Postman</span></div></div>
+  <div class="stack-row"><div class="stack-cat">Cloud & DevOps</div><div class="stack-pills"><span class="pill">Laravel Forge</span><span class="pill">DigitalOcean</span><span class="pill">GCP</span><span class="pill">Azure</span></div></div>
+</div>
 
-        <!-- Experience -->
-        <section id="experience" class="text-center">
-            <div class="container">
-                <h6 class="section-title">Some of my recent jobs</h6>
-                <h1>My <span class="green">Experience</span></h1>
-                <div class="jobs">
+<!-- EXPERIENCE -->
+<div id="experience" style="background:var(--paper2)">
+<div class="section">
+  <div class="sec-header">
+    <span class="sec-num">02 —</span>
+    <h2 class="sec-title">Experience</h2>
+  </div>
 
+  <div class="exp-item">
+    <div class="exp-meta"><div class="exp-company">Fixorshub</div><div class="exp-date">Feb – Oct 2025 · Lagos</div></div>
+    <div class="exp-body">
+      <div class="exp-role">Backend Engineer</div>
+      <ul class="exp-points">
+        <li>Engineered multi-portal backend systems (Admin, Vendor, Service Provider, Customer)</li>
+        <li>Integrated Smile ID biometric KYC verification across all portals</li>
+        <li>Built auth systems, dashboards, promotions, disputes, and reporting modules</li>
+        <li>Designed scalable REST APIs with centralized authentication</li>
+      </ul>
+      <span class="win">Laravel · MySQL · Smile ID · REST APIs</span>
+    </div>
+  </div>
 
-                    <div class="job-item first">
-                        <p class="date">AUG. 2023 - CONTRACT</p>
-                        <p class="position">Fullstack Engineer</p>
-                        <p class="company">Quality Gadgets Hub, Lagos</p>
-                        <p> Re-built and deployed the new company’s e-commerce website. <br><br>
-                            Built a functional dashboard through which the company manages its customers, products,
-                            transactions, and orders. <br> <br>
-                            Integrated Paystack Payment Gateway. <br> <br>
-                            Built the entire system on Laravel/PHP.
-                        </p>
-                    </div>
+  <div class="exp-item">
+    <div class="exp-meta"><div class="exp-company">Writinova</div><div class="exp-date">Apr 2024 – Oct 2025 · Ibadan</div></div>
+    <div class="exp-body">
+      <div class="exp-role">Backend Engineer</div>
+      <ul class="exp-points">
+        <li>Architected and deployed the full backend infrastructure from scratch</li>
+        <li>Integrated Paystack for secure payment flows and transaction management</li>
+        <li>Optimized DB schemas, queries, and caching layers</li>
+      </ul>
+      <span class="win">↑ 30% faster API response times via caching & query optimization</span>
+    </div>
+  </div>
 
-                    <div class="job-item second">
-                        <p class="date">JULY. 2O23 - OPEN SOURCE</p>
-                        <p class="position">Fullstack Engineer</p>
-                        <p class="company">MOVIE APP</p>
-                        <p>Single-handedly built a website for movie details application. <br><br>
-                            Built the entire system on Laravel/PHP. <br><br>
-                            Consumed API from TMDB.
-                        </p>
-                    </div>
+  <div class="exp-item">
+    <div class="exp-meta"><div class="exp-company">Quality Gadgets Hub</div><div class="exp-date">May – Sept 2025 · Lagos</div></div>
+    <div class="exp-body">
+      <div class="exp-role">Fullstack Engineer</div>
+      <ul class="exp-points">
+        <li>Built full-featured eCommerce platform with dynamic inventory management</li>
+        <li>Implemented role-based admin dashboards and secure access controls</li>
+        <li>Cut backend load times by 25% through query and architecture improvements</li>
+      </ul>
+      <span class="win">MVP shipped in 6 weeks · 40% increase in digital sales</span>
+    </div>
+  </div>
 
-                    <div class="job-item third">
-                        <p class="date">JULY. 2022</p>
-                        <p class="position">Fullstack Engineer</p>
-                        <p class="company">Open Source</p>
-                        <p> Single-handedly built and deployed an ECommerce website. <br><br>
-                            Built the entire system on Laravel/PHP, hosted on Google Cloud Platform. <br><br>
-                            Built a functional dashboard through which the company manages its clients, transactions,
-                            and messages.
-                        </p><br><br>
-                    </div>
+  <div class="exp-item">
+    <div class="exp-meta"><div class="exp-company">TN Wears</div><div class="exp-date">Dec 2024 – Jul 2025 · Lagos</div></div>
+    <div class="exp-body">
+      <div class="exp-role">Backend Engineer</div>
+      <ul class="exp-points">
+        <li>Developed APIs for product listings, user management, and order processing</li>
+        <li>Improved backend performance via indexing and optimized migrations</li>
+      </ul>
+      <span class="win">Laravel · REST APIs</span>
+    </div>
+  </div>
 
-                    <div class="job-item fourth">
-                        <p class="date">NOV. 2021 - CONTRACT</p>
-                        <p class="position">Fullstack Engineer</p>
-                        <p class="company">Zamani Paintings Ltd</p>
-                        <p>Single-handedly built and deployed a website for a painting firm. <br><br>
-                            Built the entire system on Laravel/PHP, hosted on Google Cloud Platform. <br><br>
-                            Built a functional dashboard through which the company manages its clients, transactions,
-                            and messages.
-                        </p>
-                    </div>
+  <div class="exp-item">
+    <div class="exp-meta"><div class="exp-company">Viral Tech</div><div class="exp-date">Feb 2023 · Lagos (Contract)</div></div>
+    <div class="exp-body">
+      <div class="exp-role">Backend Engineer</div>
+      <ul class="exp-points">
+        <li>Built affiliate marketing platform backend from scratch</li>
+        <li>Integrated Paystack with wallet transactions and robust error handling</li>
+      </ul>
+      <span class="win">↑ 15% transaction success rate via retry logic</span>
+    </div>
+  </div>
 
+  <div class="exp-item">
+    <div class="exp-meta"><div class="exp-company">Gogodrive Technologies</div><div class="exp-date">Oct 2020 – Jan 2021 · Lagos</div></div>
+    <div class="exp-body">
+      <div class="exp-role">Fullstack Engineer</div>
+      <ul class="exp-points">
+        <li>Led a team to build a School Management System now live across multiple schools</li>
+        <li>Rebuilt company website and integrated Paystack for school fee automation</li>
+      </ul>
+      <span class="win">3 major features delivered on time and under budget</span>
+    </div>
+  </div>
+</div>
+</div>
 
-                    <!-- <div class="job-item fifth">
-                        <p class="date">SEPT. 2020 – CONTRACT</p>
-                        <p class="position">Backend Developer</p>
-                        <p class="company">Hilma Aquarium, Lagos</p>
-                        <p> Re-built and deployed the new company’s website. <br> <br>
-                            Built a functional dashboard through which the company manages its clients, transactions,
-                            and messages. <br> <br>
-                            Built the entire system on Laravel/PHP
-                        </p>
-                    </div>                    -->
+<!-- PROJECTS -->
+<div id="projects" class="section">
+  <div class="sec-header">
+    <span class="sec-num">03 —</span>
+    <h2 class="sec-title">Open source projects</h2>
+  </div>
+  <div class="projects-grid">
+    <div class="proj-card">
+      <div class="proj-num">01</div>
+      <div class="proj-name">CraftConnect</div>
+      <div class="proj-desc">Laravel-powered artisan marketplace. Bookings, KYC verification, and multi-role admin management.</div>
+      <div class="proj-tags"><span class="proj-tag">Laravel</span> · <span class="proj-tag">Blade</span> · <span class="proj-tag">KYC</span></div>
+      <a class="proj-link" href="https://github.com/Soburr/CraftConnect" target="_blank">View on GitHub →</a>
+    </div>
+    <div class="proj-card">
+      <div class="proj-num">02</div>
+      <div class="proj-name">Instagram Clone</div>
+      <div class="proj-desc">Full social platform — auth, media sharing, social interactions, responsive UI. Built with Laravel & Blade.</div>
+      <div class="proj-tags"><span class="proj-tag">Laravel</span> · <span class="proj-tag">PHP</span> · <span class="proj-tag">Blade</span></div>
+      <a class="proj-link" href="https://github.com/Soburr/Instagram-clone" target="_blank">View on GitHub →</a>
+    </div>
+    <div class="proj-card">
+      <div class="proj-num">03</div>
+      <div class="proj-name">Realtime Chat App</div>
+      <div class="proj-desc">Real-time messaging and collaboration built with Laravel and Livewire. Open-source and starred.</div>
+      <div class="proj-tags"><span class="proj-tag">Laravel</span> · <span class="proj-tag">Livewire</span> · <span class="proj-tag">Real-time</span></div>
+      <a class="proj-link" href="https://github.com/Soburr/Realtime_Lara_Chat" target="_blank">View on GitHub →</a>
+    </div>
+    <div class="proj-card">
+      <div class="proj-num">04</div>
+      <div class="proj-name">EduMetric</div>
+      <div class="proj-desc">Full-stack school portal with a scalable CBT engine for exam management, real-time testing, and analytics.</div>
+      <div class="proj-tags"><span class="proj-tag">Laravel</span> · <span class="proj-tag">Blade</span> · <span class="proj-tag">CBT Engine</span></div>
+      <a class="proj-link" href="https://github.com/Soburr/EduMetric" target="_blank">View on GitHub →</a>
+    </div>
+    <div class="proj-card">
+      <div class="proj-num">05</div>
+      <div class="proj-name">Quality Gadgets Hub</div>
+      <div class="proj-desc">eCommerce platform — product management, Paystack payments, admin dashboards, RBAC.</div>
+      <div class="proj-tags"><span class="proj-tag">Laravel</span> · <span class="proj-tag">Paystack</span> · <span class="proj-tag">eCommerce</span></div>
+      <a class="proj-link" href="https://github.com/Soburr/Quality-Gadgets-Hub" target="_blank">View on GitHub →</a>
+    </div>
+    <div class="proj-card">
+      <div class="proj-num">06</div>
+      <div class="proj-name">Cramp Relief App</div>
+      <div class="proj-desc">Single-file wellness companion. Heat therapy timer, guided breathing, affirmations. Zero dependencies.</div>
+      <div class="proj-tags"><span class="proj-tag">HTML</span> · <span class="proj-tag">Vanilla JS</span> · <span class="proj-tag">Zero deps</span></div>
+      <a class="proj-link" href="https://github.com/Soburr/Cramp-relief-frontend" target="_blank">View on GitHub →</a>
+    </div>
+  </div>
+</div>
 
-             
+<!-- EDUCATION & CERTS -->
+<div style="background:var(--paper2)">
+<div class="section">
+  <div class="sec-header">
+    <span class="sec-num">04 —</span>
+    <h2 class="sec-title">Education & training</h2>
+  </div>
+  <div class="edu-block">
+    <div class="edu-year">2026</div>
+    <div><div class="edu-name">BSc. Physics</div><div class="edu-sub">University of Lagos</div></div>
+  </div>
+  <div class="edu-block">
+    <div class="edu-year">Aug – Oct 2023</div>
+    <div><div class="edu-name">Laravel Tutor</div><div class="edu-sub">Microsoft Learn Student Ambassadors Bootcamp, Unilag</div></div>
+  </div>
+  <div class="edu-block">
+    <div class="edu-year">Jul 2023</div>
+    <div><div class="edu-name">API Crash Course for Beginners</div><div class="edu-sub">Laracasts</div></div>
+  </div>
+  <div class="edu-block">
+    <div class="edu-year">Aug 2022</div>
+    <div><div class="edu-name">Building Admin Dashboards with Laravel Nova</div><div class="edu-sub">Laracasts</div></div>
+  </div>
+  <div class="edu-block">
+    <div class="edu-year">Mar 2021</div>
+    <div><div class="edu-name">PHP with Laravel for Beginners</div><div class="edu-sub">Udemy</div></div>
+  </div>
+  <div class="edu-block">
+    <div class="edu-year">2020 – 2021</div>
+    <div><div class="edu-name">Fast Laravel APIs & Apps with Blueprint</div><div class="edu-sub">Udemy</div></div>
+  </div>
+</div>
+</div>
 
-                </div>
-            </div>
-        </section>
-        <!-- Contact -->
-        <section id="contact" class="text-center">
-            <div class="container">
-                <h6 class="section-title">Contact</h6>
-                <h1>Call Or Write <span class="green">Anytime</span></h1>
-                <div class="row">
-                    <div class=" form col-md-12 ">
-                        <form id="contact-form" action="https://formspree.io/f/xdojkeqd" method="post">
-                            <div class="form-group">
-                                <label for="name">Full Name</label>
-                                <input type="text" class="form-control" id="name" name="fullname" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">E-mail Address</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Message</label>
-                                <textarea class="form-control" id="Message" name="Message" placeholder=""></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-success py-2 px-">Send message</button>
-                        </form>
-                    </div>
-                    <div class="img col-md-5 col-lg-4">
-                        <!-- <img src="img/photo-contact.jpg" alt=""> -->
-                    </div>
-                    <div class="contacts img col-xl-8">
-                        <div class="social-media">
-                            <p>Social Media</p>
-                            <a href="//instagram.com/newton0999/" class="me-2 text-reset" target="_blank"><img
-                                    src="img/icon/instagram-icon.svg" alt=""></a>
-                            <a href="//facebook.com/profile.php?id=100066858159194/" class="me-2 text-reset"
-                                target="_blank"><img src="img/icon/facebook-icon.svg" alt=""></a>
-                            <a href="//twitter.com/LilLucie4?t=pDIYS_BC8I7Mahub0xTkBQ&s=09/" class="me-2 text-reset"
-                                target="_blank"><img src="img/icon/twitter-icon.svg" alt=""></a>
-                            <a href="//linkedin.com/in/adebesin-adewunmi-334897220/" class="me-2 text-reset"
-                                target="_blank"><img src="img/icon/linkedin-icon.svg" alt=""></a>
-                            <div class="email">
-                                <p>Contact me via mail</p>
-                                <p class="white">adebesinnewton99@gmail.com</p>
-                            </div>
-                            <div class="phone">
-                                <p>My phone</p>
-                                <p class="white">+234 814 0902 526</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </section>
-    </main>
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="copyright">
-                <p>&copy; 2022 | NEWTON </p>
-            </div>
-        </div>
-    </footer>
-    <!-- <div class="fb2022-copy">Fbee 2022 copyright</div> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"
-        target="_blank"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- CONTACT -->
+<div id="contact-section">
+  <div class="contact-inner">
+    <div class="contact-big">Let's build<br>something <em>great</em><br>together.</div>
+    <div class="contact-row">
+      <div class="c-item"><div class="c-label">Email</div><div class="c-val"><a href="mailto:adebesinnewton99@gmail.com">adebesinnewton99@gmail.com</a></div></div>
+      <div class="c-item"><div class="c-label">Phone</div><div class="c-val"><a href="tel:+2348140902526">0814 090 2526</a></div></div>
+      <div class="c-item"><div class="c-label">GitHub</div><div class="c-val"><a href="https://github.com/Soburr" target="_blank">github.com/Soburr</a></div></div>
+      <div class="c-item"><div class="c-label">LinkedIn</div><div class="c-val"><a href="https://www.linkedin.com/in/adebesin-adewunmi-334897220/" target="_blank">Adebesin Adewunmi</a></div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>Adebesin Adewunmi — Backend Engineer</span>
+  <span>Lagos, Nigeria · 2025</span>
+</footer>
+
+<script>
+const dot = document.getElementById('dot');
+document.addEventListener('mousemove', e => {
+  dot.style.left = e.clientX + 'px';
+  dot.style.top = e.clientY + 'px';
+});
+</script>
 </body>
-
 </html>
