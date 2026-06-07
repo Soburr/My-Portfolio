@@ -4,396 +4,338 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Adebesin Adewunmi — Backend Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#0d0c08;
-  --paper:#f5f2eb;
-  --paper2:#ede9df;
-  --lime:#c8f03c;
-  --rust:#c4401a;
-  --muted:#7a7567;
-  --rule:rgba(13,12,8,0.12);
-  --serif:'DM Serif Display',Georgia,serif;
-  --mono:'DM Mono',monospace;
-  --sans:'Instrument Sans',sans-serif;
+  --bg:#080810;
+  --surface:#0f0f1a;
+  --card:#13131f;
+  --card2:#17172a;
+  --border:rgba(255,255,255,0.06);
+  --border2:rgba(255,255,255,0.12);
+  --gold:#f5c842;
+  --gold2:#e8a020;
+  --teal:#00d4aa;
+  --white:#f0eee8;
+  --muted:#6b6b80;
+  --muted2:#9090a8;
+  --display:'Bebas Neue',sans-serif;
+  --body:'Manrope',sans-serif;
 }
 html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;cursor:crosshair}
+body{background:var(--bg);color:var(--white);font-family:var(--body);font-size:15px;line-height:1.6;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-
-/* CURSOR DOT */
-#dot{position:fixed;width:8px;height:8px;background:var(--lime);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;mix-blend-mode:multiply}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:var(--paper);border-bottom:1px solid var(--rule)}
-.nav-name{font-family:var(--serif);font-size:1.1rem;letter-spacing:-0.01em}
-.nav-right{display:flex;align-items:center;gap:2rem}
-.nav-links{display:flex;gap:1.5rem;list-style:none}
-.nav-links a{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);transition:color .2s}
-.nav-links a:hover{color:var(--ink)}
-.nav-badge{font-family:var(--mono);font-size:11px;background:var(--lime);color:var(--ink);padding:4px 10px;border-radius:2px;letter-spacing:0.05em}
-
-/* HERO */
-#hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;padding-top:60px}
-.hero-main{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--rule)}
-.hero-left{padding:4rem 2.5rem;border-right:1px solid var(--rule);display:flex;flex-direction:column;justify-content:space-between}
-.hero-index{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:auto;padding-bottom:3rem}
-.hero-title{font-family:var(--serif);font-size:clamp(3rem,5.5vw,5rem);line-height:0.95;letter-spacing:-0.03em;margin-bottom:2rem}
-.hero-title em{font-style:italic;color:var(--rust)}
-.hero-loc{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.08em}
-.hero-right{padding:4rem 2.5rem;display:flex;flex-direction:column;justify-content:space-between;background:var(--paper2)}
-.hero-bio{font-size:1rem;line-height:1.8;color:var(--ink);max-width:400px;margin-bottom:3rem}
-.hero-bio strong{font-weight:600}
-.hero-actions{display:flex;flex-direction:column;gap:0.75rem}
-.btn-block{display:block;padding:1rem 1.5rem;border:1px solid var(--rule);font-family:var(--mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;transition:background .15s,color .15s;border-radius:2px}
-.btn-block:hover{background:var(--ink);color:var(--paper)}
-.btn-block.filled{background:var(--ink);color:var(--paper)}
-.btn-block.filled:hover{background:var(--rust)}
-.hero-bottom{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--rule)}
-.hero-stat{padding:1.5rem 2.5rem;border-right:1px solid var(--rule)}
-.hero-stat:last-child{border-right:none}
-.stat-n{font-family:var(--serif);font-size:2.2rem;color:var(--rust)}
-.stat-l{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-top:2px}
-
-/* SECTION WRAPPER */
-.section{max-width:1100px;margin:0 auto;padding:5rem 2.5rem}
-.sec-header{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--rule);padding-bottom:1rem;margin-bottom:3rem}
-.sec-num{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.1em}
-.sec-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-0.02em}
-
-/* SKILLS */
-.stack-row{display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--rule);padding:1.25rem 0;align-items:start;gap:2rem}
-.stack-row:last-child{border-bottom:none}
-.stack-cat{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);padding-top:2px}
-.stack-pills{display:flex;flex-wrap:wrap;gap:8px}
-.pill{font-family:var(--mono);font-size:12px;padding:4px 12px;border:1px solid var(--rule);border-radius:2px;color:var(--ink);background:transparent;transition:background .15s}
-.pill:hover{background:var(--lime)}
-
-/* EXPERIENCE */
-.exp-item{display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--rule);padding:2.5rem 0;gap:2rem}
-.exp-item:last-child{border-bottom:none}
-.exp-company{font-family:var(--serif);font-size:1.05rem;margin-bottom:4px}
-.exp-date{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.06em}
-.exp-role{font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.75rem}
-.exp-points{list-style:none;margin-bottom:1rem}
-.exp-points li{font-size:14px;line-height:1.7;color:#3a3830;padding:2px 0;padding-left:1.2rem;position:relative}
-.exp-points li::before{content:'—';position:absolute;left:0;color:var(--muted);font-size:12px}
-.win{display:inline-block;margin-top:0.5rem;font-family:var(--mono);font-size:11px;background:var(--lime);color:var(--ink);padding:3px 10px;border-radius:2px;letter-spacing:0.04em}
-
-/* PROJECTS */
-.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule)}
-.proj-card{padding:2rem;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);transition:background .2s}
-.proj-card:nth-child(3n){border-right:none}
-.proj-card:nth-child(n+4){border-bottom:none}
-.proj-card:hover{background:var(--paper2)}
-.proj-num{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:0.1em;margin-bottom:1rem}
-.proj-name{font-family:var(--serif);font-size:1.2rem;letter-spacing:-0.01em;margin-bottom:0.6rem;line-height:1.2}
-.proj-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:1.25rem}
-.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.25rem}
-.proj-tag{font-family:var(--mono);font-size:10px;letter-spacing:0.06em;color:var(--muted)}
-.proj-link{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--rust);display:inline-flex;align-items:center;gap:6px;transition:gap .15s}
+.orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
+.orb1{width:600px;height:600px;background:rgba(245,200,66,0.07);top:-200px;right:-100px}
+.orb2{width:500px;height:500px;background:rgba(0,212,170,0.05);bottom:-150px;left:-100px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 3rem;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,16,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{font-family:var(--display);font-size:1.5rem;letter-spacing:0.05em;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-menu{display:flex;gap:2.5rem;list-style:none}
+.nav-menu a{font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted2);transition:color .2s}
+.nav-menu a:hover{color:var(--gold)}
+.nav-hire{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#080810;padding:8px 20px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;transition:opacity .2s}
+.nav-hire:hover{opacity:0.85}
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 3rem 60px;position:relative;z-index:1}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:2rem}
+.eyebrow-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 14px var(--teal);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.eyebrow-text{font-size:12px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal)}
+h1.hero-name{font-family:var(--display);font-size:clamp(5rem,12vw,10.5rem);line-height:0.88;letter-spacing:0.02em;margin-bottom:0.3rem}
+h1.hero-name .line2{display:block;background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 50%,#ff8c42 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-tagline{font-size:clamp(0.9rem,1.8vw,1.1rem);color:var(--muted2);font-weight:300;max-width:520px;margin:2rem 0 3rem;line-height:1.9}
+.hero-tagline strong{color:var(--white);font-weight:600}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:5rem}
+.cta-primary{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#080810;padding:14px 28px;border-radius:4px;font-weight:700;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;transition:transform .2s,box-shadow .2s}
+.cta-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(245,200,66,0.3)}
+.cta-secondary{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--border2);color:var(--white);padding:14px 28px;border-radius:4px;font-weight:500;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;transition:border-color .2s,background .2s}
+.cta-secondary:hover{border-color:var(--gold);background:rgba(245,200,66,0.05)}
+.hero-metrics{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--card)}
+.metric{padding:1.75rem 2rem;border-right:1px solid var(--border);position:relative}
+.metric:last-child{border-right:none}
+.metric::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.metric-val{font-family:var(--display);font-size:2.8rem;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:6px}
+.metric-lbl{font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+section{position:relative;z-index:1}
+.wrap{max-width:1080px;margin:0 auto;padding:6rem 3rem}
+.sec-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.sec-tag::before{content:'';width:24px;height:1px;background:var(--gold)}
+h2.sec-title{font-family:var(--display);font-size:clamp(2.5rem,5vw,4rem);letter-spacing:0.03em;margin-bottom:3rem;line-height:1}
+#skills{background:var(--surface)}
+.skill-row{display:grid;grid-template-columns:180px 1fr;align-items:center;padding:1.1rem 0;border-bottom:1px solid var(--border);gap:2rem}
+.skill-row:last-child{border-bottom:none}
+.skill-cat{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+.skill-chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:5px 14px;background:var(--card2);border:1px solid var(--border2);border-radius:3px;font-size:12px;font-weight:500;color:var(--white);transition:border-color .2s,background .2s,color .2s}
+.chip:hover{border-color:var(--gold);background:rgba(245,200,66,0.08);color:var(--gold)}
+#experience{background:var(--bg)}
+.exp-card{padding:2.5rem 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 3fr;gap:3rem}
+.exp-card:last-child{border-bottom:none}
+.exp-co{font-size:1rem;font-weight:700;color:var(--white);margin-bottom:4px}
+.exp-when{font-size:11px;font-weight:500;letter-spacing:0.08em;color:var(--muted);text-transform:uppercase;margin-bottom:1rem}
+.exp-badge{display:inline-block;padding:3px 10px;background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.25);color:var(--gold);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border-radius:3px}
+.exp-title{font-size:1.05rem;font-weight:600;color:var(--white);margin-bottom:1rem}
+.exp-pts{list-style:none;margin-bottom:1.25rem}
+.exp-pts li{font-size:13.5px;color:var(--muted2);padding:4px 0 4px 1.25rem;position:relative;line-height:1.7}
+.exp-pts li::before{content:'';position:absolute;left:0;top:13px;width:6px;height:1px;background:var(--gold)}
+.win-bar{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,170,0.08);border:1px solid rgba(0,212,170,0.2);border-radius:3px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--teal)}
+.win-bar::before{content:'↑';margin-right:2px}
+#projects{background:var(--surface)}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.proj{background:var(--card);padding:2rem;transition:background .2s;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.proj::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--teal));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.proj:hover{background:var(--card2)}
+.proj:hover::after{transform:scaleX(1)}
+.proj-n{font-size:10px;font-weight:700;letter-spacing:0.15em;color:var(--muted);margin-bottom:1.25rem}
+.proj-name{font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:0.6rem;line-height:1.3}
+.proj-desc{font-size:13px;color:var(--muted2);line-height:1.75;margin-bottom:1.25rem;flex:1}
+.proj-stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.25rem}
+.stk{font-size:10px;font-weight:600;letter-spacing:0.08em;color:var(--muted);text-transform:uppercase}
+.stk:not(:last-child)::after{content:'·';margin-left:6px;color:var(--border2)}
+.proj-link{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:6px;transition:gap .2s}
 .proj-link:hover{gap:10px}
-
-/* EDUCATION */
-.edu-block{display:grid;grid-template-columns:200px 1fr;padding:2rem 0;border-bottom:1px solid var(--rule);gap:2rem;align-items:start}
-.edu-block:last-child{border-bottom:none}
-.edu-year{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.06em}
-.edu-name{font-family:var(--serif);font-size:1.1rem;margin-bottom:2px}
-.edu-sub{font-family:var(--mono);font-size:12px;color:var(--muted)}
-
-/* CONTACT */
-#contact-section{background:var(--ink);color:var(--paper)}
-.contact-inner{max-width:1100px;margin:0 auto;padding:5rem 2.5rem}
-.contact-big{font-family:var(--serif);font-size:clamp(3rem,7vw,6rem);line-height:0.95;letter-spacing:-0.04em;margin-bottom:3rem}
-.contact-big em{font-style:italic;color:var(--lime)}
-.contact-row{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(245,242,235,0.12);padding-top:2rem;gap:2rem}
-.c-label{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,242,235,0.4);margin-bottom:6px}
-.c-val{font-size:14px;color:var(--paper);transition:color .2s}
-.c-val:hover{color:var(--lime)}
-.c-val a{color:inherit}
-
-footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding:1.5rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
-footer span{font-family:var(--mono);font-size:11px;color:rgba(245,242,235,0.3);letter-spacing:0.06em}
-
+#education{background:var(--bg)}
+.edu-row{display:grid;grid-template-columns:200px 1fr;padding:1.75rem 0;border-bottom:1px solid var(--border);gap:3rem;align-items:start}
+.edu-row:last-child{border-bottom:none}
+.edu-yr{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.edu-name{font-size:1rem;font-weight:600;color:var(--white);margin-bottom:2px}
+.edu-sub{font-size:13px;color:var(--muted2)}
+#contact{background:var(--surface)}
+.contact-wrap{max-width:1080px;margin:0 auto;padding:6rem 3rem}
+.contact-headline{font-family:var(--display);font-size:clamp(3.5rem,8vw,7rem);line-height:0.9;letter-spacing:0.02em;margin-bottom:1.5rem}
+.contact-headline .gold{background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.contact-sub{font-size:1rem;color:var(--muted2);max-width:480px;line-height:1.8;margin-bottom:3.5rem}
+.contact-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:620px}
+.c-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;transition:border-color .2s,background .2s}
+.c-card:hover{border-color:rgba(245,200,66,0.3);background:var(--card2)}
+.c-icon{width:40px;height:40px;border-radius:6px;background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-lbl{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.c-val{font-size:13px;font-weight:500;color:var(--white)}
+.download-bar{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,rgba(245,200,66,0.08),rgba(0,212,170,0.04));border:1px solid rgba(245,200,66,0.18);border-radius:8px;padding:1.75rem 2rem;margin-top:2.5rem;gap:2rem;flex-wrap:wrap}
+.dl-text{font-size:1rem;font-weight:700;color:var(--white);margin-bottom:4px}
+.dl-sub{font-size:13px;color:var(--muted2)}
+.dl-btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#080810;padding:13px 26px;border-radius:4px;font-weight:700;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;transition:transform .2s,box-shadow .2s}
+.dl-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(245,200,66,0.35)}
+footer{background:var(--bg);border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+footer p{font-size:12px;color:var(--muted);letter-spacing:0.06em}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:12px;color:var(--muted);transition:color .2s}
+.footer-links a:hover{color:var(--gold)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
 @media(max-width:768px){
-  .hero-main{grid-template-columns:1fr}
-  .hero-left{border-right:none;border-bottom:1px solid var(--rule);padding:2.5rem 1.5rem}
-  .hero-right{padding:2.5rem 1.5rem}
-  .hero-bottom{grid-template-columns:1fr 1fr}
-  .hero-stat{border-bottom:1px solid var(--rule)}
-  nav{padding:1rem 1.5rem}
-  .nav-links{display:none}
-  .section{padding:3rem 1.5rem}
-  .stack-row,.exp-item,.edu-block{grid-template-columns:1fr}
-  .projects-grid{grid-template-columns:1fr}
-  .proj-card{border-right:none}
-  .proj-card:nth-child(n+4){border-bottom:1px solid var(--rule)}
-  .proj-card:last-child{border-bottom:none}
-  .contact-row{grid-template-columns:1fr 1fr}
-  .contact-big{font-size:clamp(2.2rem,8vw,4rem)}
-  .sec-header{flex-direction:column;gap:4px}
-  footer{flex-direction:column;gap:8px;text-align:center}
+  nav{padding:0 1.5rem}
+  .nav-menu{display:none}
+  #hero{padding:100px 1.5rem 50px}
+  .hero-metrics{grid-template-columns:1fr 1fr}
+  .metric{border-bottom:1px solid var(--border)}
+  .wrap,.contact-wrap{padding:4rem 1.5rem}
+  .exp-card{grid-template-columns:1fr}
+  .skill-row{grid-template-columns:1fr;gap:0.75rem}
+  .edu-row{grid-template-columns:1fr;gap:0.5rem}
+  .proj-grid{grid-template-columns:1fr}
+  .contact-cards{grid-template-columns:1fr}
+  .download-bar{flex-direction:column;text-align:center}
+  footer{flex-direction:column;gap:1rem;text-align:center}
 }
 </style>
 </head>
 <body>
 
-<div id="dot"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
 
 <nav>
-  <div class="nav-name">Adebesin Adewunmi</div>
-  <div class="nav-right">
-    <ul class="nav-links">
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Work</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact-section">Contact</a></li>
-    </ul>
-    <span class="nav-badge">Open to roles</span>
-  </div>
+  <div class="logo">Adebesin.</div>
+  <ul class="nav-menu">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Work</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-hire" href="mailto:adebesinnewton99@gmail.com">Hire Me</a>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
-  <div class="hero-main">
-    <div class="hero-left">
-      <div class="hero-index">Portfolio — 2025 / Backend Engineer</div>
-      <div>
-        <h1 class="hero-title">I build<br><em>systems</em><br>that scale.</h1>
-        <div class="hero-loc">📍 Lagos, Nigeria</div>
-      </div>
-    </div>
-    <div class="hero-right">
-      <p class="hero-bio">
-        I'm a <strong>Backend / Fullstack Engineer</strong> with 4+ years of experience shipping production-grade APIs, payment systems, and multi-portal platforms.<br><br>
-        My stack is <strong>PHP & Laravel</strong> at the core — with Vue.js, Livewire, and Tailwind CSS on the front. I've worked across fintech, eCommerce, SaaS, and edtech.
-      </p>
-      <div class="hero-actions">
-        <a class="btn-block filled" href="mailto:adebesinnewton99@gmail.com">Get in touch →</a>
-        <a class="btn-block" href="https://github.com/Soburr" target="_blank">GitHub / Soburr</a>
-        <a class="btn-block" href="https://www.linkedin.com/in/adebesin-adewunmi-334897220/" target="_blank">LinkedIn Profile</a>
-      </div>
-    </div>
+  <div class="hero-eyebrow">
+    <div class="eyebrow-dot"></div>
+    <span class="eyebrow-text">Available for opportunities · Lagos, Nigeria</span>
   </div>
-  <div class="hero-bottom">
-    <div class="hero-stat"><div class="stat-n">4+</div><div class="stat-l">Years shipping code</div></div>
-    <div class="hero-stat"><div class="stat-n">30%</div><div class="stat-l">API speed uplift</div></div>
-    <div class="hero-stat"><div class="stat-n">40%</div><div class="stat-l">Sales increase driven</div></div>
-    <div class="hero-stat"><div class="stat-n">6wk</div><div class="stat-l">MVP turnaround</div></div>
+  <h1 class="hero-name">
+    ADEBESIN
+    <span class="line2">ADEWUNMI</span>
+  </h1>
+  <p class="hero-tagline">
+    <strong>Backend & Fullstack Engineer</strong> building production-grade APIs, payment systems, and multi-portal platforms. 4+ years shipping real products with <strong>PHP, Laravel, and Vue.js</strong> across fintech, eCommerce, and SaaS.
+  </p>
+  <div class="hero-ctas">
+    <a class="cta-primary" href="#contact">Get in touch →</a>
+    <a class="cta-secondary" href="Adebesin_Adewunmi_Resume.docx" download>Download CV ↓</a>
+    <a class="cta-secondary" href="https://github.com/Soburr" target="_blank">GitHub ↗</a>
+  </div>
+  <div class="hero-metrics reveal">
+    <div class="metric"><div class="metric-val">4+</div><div class="metric-lbl">Years experience</div></div>
+    <div class="metric"><div class="metric-val">30%</div><div class="metric-lbl">API speed gains</div></div>
+    <div class="metric"><div class="metric-val">40%</div><div class="metric-lbl">Sales uplift</div></div>
+    <div class="metric"><div class="metric-val">6wk</div><div class="metric-lbl">MVP delivered</div></div>
   </div>
 </section>
 
-<!-- SKILLS -->
-<div id="skills" class="section">
-  <div class="sec-header">
-    <span class="sec-num">01 —</span>
-    <h2 class="sec-title">Tech stack</h2>
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-tag">Tech stack</div>
+    <h2 class="sec-title">WHAT I<br>WORK WITH</h2>
+    <div class="reveal">
+      <div class="skill-row"><div class="skill-cat">Backend</div><div class="skill-chips"><span class="chip">PHP</span><span class="chip">Laravel</span><span class="chip">REST APIs</span><span class="chip">PHPUnit</span><span class="chip">PestPHP</span></div></div>
+      <div class="skill-row"><div class="skill-cat">Frontend</div><div class="skill-chips"><span class="chip">Vue.js</span><span class="chip">Livewire</span><span class="chip">Alpine.js</span><span class="chip">Blade</span><span class="chip">Tailwind CSS</span><span class="chip">JavaScript</span></div></div>
+      <div class="skill-row"><div class="skill-cat">Databases</div><div class="skill-chips"><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">Redis</span></div></div>
+      <div class="skill-row"><div class="skill-cat">Integrations</div><div class="skill-chips"><span class="chip">Paystack</span><span class="chip">Smile ID / KYC</span><span class="chip">OpenAI API</span><span class="chip">Scribe</span><span class="chip">Postman</span></div></div>
+      <div class="skill-row"><div class="skill-cat">Cloud & DevOps</div><div class="skill-chips"><span class="chip">Laravel Forge</span><span class="chip">DigitalOcean</span><span class="chip">GCP</span><span class="chip">Azure</span><span class="chip">Git</span></div></div>
+    </div>
   </div>
-  <div class="stack-row"><div class="stack-cat">Backend</div><div class="stack-pills"><span class="pill">PHP</span><span class="pill">Laravel</span><span class="pill">REST APIs</span><span class="pill">PHPUnit</span><span class="pill">PestPHP</span></div></div>
-  <div class="stack-row"><div class="stack-cat">Frontend</div><div class="stack-pills"><span class="pill">Vue.js</span><span class="pill">Livewire</span><span class="pill">Alpine.js</span><span class="pill">Blade</span><span class="pill">Tailwind CSS</span><span class="pill">JavaScript</span></div></div>
-  <div class="stack-row"><div class="stack-cat">Databases</div><div class="stack-pills"><span class="pill">MySQL</span><span class="pill">PostgreSQL</span><span class="pill">Redis</span></div></div>
-  <div class="stack-row"><div class="stack-cat">Integrations</div><div class="stack-pills"><span class="pill">Paystack</span><span class="pill">Smile ID / KYC</span><span class="pill">OpenAI API</span><span class="pill">Scribe</span><span class="pill">Postman</span></div></div>
-  <div class="stack-row"><div class="stack-cat">Cloud & DevOps</div><div class="stack-pills"><span class="pill">Laravel Forge</span><span class="pill">DigitalOcean</span><span class="pill">GCP</span><span class="pill">Azure</span></div></div>
-</div>
+</section>
 
-<!-- EXPERIENCE -->
-<div id="experience" style="background:var(--paper2)">
-<div class="section">
-  <div class="sec-header">
-    <span class="sec-num">02 —</span>
-    <h2 class="sec-title">Experience</h2>
-  </div>
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-tag">Work history</div>
+    <h2 class="sec-title">EXPERIENCE</h2>
 
-  <div class="exp-item">
-    <div class="exp-meta"><div class="exp-company">Fixorshub</div><div class="exp-date">Feb – Oct 2025 · Lagos</div></div>
-    <div class="exp-body">
-      <div class="exp-role">Backend Engineer</div>
-      <ul class="exp-points">
-        <li>Engineered multi-portal backend systems (Admin, Vendor, Service Provider, Customer)</li>
-        <li>Integrated Smile ID biometric KYC verification across all portals</li>
-        <li>Built auth systems, dashboards, promotions, disputes, and reporting modules</li>
-        <li>Designed scalable REST APIs with centralized authentication</li>
-      </ul>
-      <span class="win">Laravel · MySQL · Smile ID · REST APIs</span>
+    <div class="exp-card reveal">
+      <div><div class="exp-co">Fixorshub</div><div class="exp-when">Feb – Oct 2025</div><div class="exp-badge">Lagos</div></div>
+      <div><div class="exp-title">Backend Engineer</div>
+        <ul class="exp-pts">
+          <li>Engineered multi-portal backend systems for Admins, Vendors, Service Providers, and Customers</li>
+          <li>Integrated Smile ID biometric KYC verification across all user portals</li>
+          <li>Built auth systems, dashboards, promotions, disputes, and reporting modules</li>
+          <li>Designed scalable REST APIs with centralized authentication mechanisms</li>
+        </ul>
+        <div class="win-bar">Laravel · MySQL · Smile ID · REST APIs</div>
+      </div>
     </div>
-  </div>
 
-  <div class="exp-item">
-    <div class="exp-meta"><div class="exp-company">Writinova</div><div class="exp-date">Apr 2024 – Oct 2025 · Ibadan</div></div>
-    <div class="exp-body">
-      <div class="exp-role">Backend Engineer</div>
-      <ul class="exp-points">
-        <li>Architected and deployed the full backend infrastructure from scratch</li>
-        <li>Integrated Paystack for secure payment flows and transaction management</li>
-        <li>Optimized DB schemas, queries, and caching layers</li>
-      </ul>
-      <span class="win">↑ 30% faster API response times via caching & query optimization</span>
+    <div class="exp-card reveal">
+      <div><div class="exp-co">Writinova</div><div class="exp-when">Apr 2024 – Oct 2025</div><div class="exp-badge">Ibadan</div></div>
+      <div><div class="exp-title">Backend Engineer</div>
+        <ul class="exp-pts">
+          <li>Architected and deployed the full backend infrastructure from scratch</li>
+          <li>Integrated Paystack for secure payment flows and transaction management</li>
+          <li>Optimized DB schemas, queries, and Redis caching layers</li>
+        </ul>
+        <div class="win-bar">30% faster API response times via caching & optimization</div>
+      </div>
     </div>
-  </div>
 
-  <div class="exp-item">
-    <div class="exp-meta"><div class="exp-company">Quality Gadgets Hub</div><div class="exp-date">May – Sept 2025 · Lagos</div></div>
-    <div class="exp-body">
-      <div class="exp-role">Fullstack Engineer</div>
-      <ul class="exp-points">
-        <li>Built full-featured eCommerce platform with dynamic inventory management</li>
-        <li>Implemented role-based admin dashboards and secure access controls</li>
-        <li>Cut backend load times by 25% through query and architecture improvements</li>
-      </ul>
-      <span class="win">MVP shipped in 6 weeks · 40% increase in digital sales</span>
+    <div class="exp-card reveal">
+      <div><div class="exp-co">Quality Gadgets Hub</div><div class="exp-when">May – Sept 2025</div><div class="exp-badge">Lagos</div></div>
+      <div><div class="exp-title">Fullstack Engineer</div>
+        <ul class="exp-pts">
+          <li>Built a full-featured eCommerce platform with dynamic inventory management</li>
+          <li>Implemented role-based admin dashboards and secure access controls</li>
+          <li>Cut backend load times by 25% through architecture improvements</li>
+        </ul>
+        <div class="win-bar">MVP in 6 weeks · 40% increase in digital sales</div>
+      </div>
     </div>
-  </div>
 
-  <div class="exp-item">
-    <div class="exp-meta"><div class="exp-company">TN Wears</div><div class="exp-date">Dec 2024 – Jul 2025 · Lagos</div></div>
-    <div class="exp-body">
-      <div class="exp-role">Backend Engineer</div>
-      <ul class="exp-points">
-        <li>Developed APIs for product listings, user management, and order processing</li>
-        <li>Improved backend performance via indexing and optimized migrations</li>
-      </ul>
-      <span class="win">Laravel · REST APIs</span>
+    <div class="exp-card reveal">
+      <div><div class="exp-co">TN Wears</div><div class="exp-when">Dec 2024 – Jul 2025</div><div class="exp-badge">Lagos</div></div>
+      <div><div class="exp-title">Backend Engineer</div>
+        <ul class="exp-pts">
+          <li>Built APIs for product listings, user management, and order processing</li>
+          <li>Improved backend performance via indexing and optimized DB migrations</li>
+        </ul>
+        <div class="win-bar">Laravel · REST APIs · Performance tuning</div>
+      </div>
     </div>
-  </div>
 
-  <div class="exp-item">
-    <div class="exp-meta"><div class="exp-company">Viral Tech</div><div class="exp-date">Feb 2023 · Lagos (Contract)</div></div>
-    <div class="exp-body">
-      <div class="exp-role">Backend Engineer</div>
-      <ul class="exp-points">
-        <li>Built affiliate marketing platform backend from scratch</li>
-        <li>Integrated Paystack with wallet transactions and robust error handling</li>
-      </ul>
-      <span class="win">↑ 15% transaction success rate via retry logic</span>
+    <div class="exp-card reveal">
+      <div><div class="exp-co">Viral Tech</div><div class="exp-when">Feb 2023 · Contract</div><div class="exp-badge">Lagos</div></div>
+      <div><div class="exp-title">Backend Engineer</div>
+        <ul class="exp-pts">
+          <li>Built affiliate marketing platform backend from scratch</li>
+          <li>Integrated Paystack with wallet transactions and retry error handling</li>
+        </ul>
+        <div class="win-bar">15% transaction success rate improvement</div>
+      </div>
     </div>
-  </div>
 
-  <div class="exp-item">
-    <div class="exp-meta"><div class="exp-company">Gogodrive Technologies</div><div class="exp-date">Oct 2020 – Jan 2021 · Lagos</div></div>
-    <div class="exp-body">
-      <div class="exp-role">Fullstack Engineer</div>
-      <ul class="exp-points">
-        <li>Led a team to build a School Management System now live across multiple schools</li>
-        <li>Rebuilt company website and integrated Paystack for school fee automation</li>
-      </ul>
-      <span class="win">3 major features delivered on time and under budget</span>
+    <div class="exp-card reveal">
+      <div><div class="exp-co">Gogodrive Technologies</div><div class="exp-when">Oct 2020 – Jan 2021</div><div class="exp-badge">Lagos</div></div>
+      <div><div class="exp-title">Fullstack Engineer</div>
+        <ul class="exp-pts">
+          <li>Led a team to build a School Management System now live across multiple schools</li>
+          <li>Rebuilt company website and automated school fee collection via Paystack</li>
+        </ul>
+        <div class="win-bar">3 major features delivered on time and under budget</div>
+      </div>
     </div>
   </div>
-</div>
-</div>
+</section>
 
-<!-- PROJECTS -->
-<div id="projects" class="section">
-  <div class="sec-header">
-    <span class="sec-num">03 —</span>
-    <h2 class="sec-title">Open source projects</h2>
-  </div>
-  <div class="projects-grid">
-    <div class="proj-card">
-      <div class="proj-num">01</div>
-      <div class="proj-name">CraftConnect</div>
-      <div class="proj-desc">Laravel-powered artisan marketplace. Bookings, KYC verification, and multi-role admin management.</div>
-      <div class="proj-tags"><span class="proj-tag">Laravel</span> · <span class="proj-tag">Blade</span> · <span class="proj-tag">KYC</span></div>
-      <a class="proj-link" href="https://github.com/Soburr/CraftConnect" target="_blank">View on GitHub →</a>
-    </div>
-    <div class="proj-card">
-      <div class="proj-num">02</div>
-      <div class="proj-name">Instagram Clone</div>
-      <div class="proj-desc">Full social platform — auth, media sharing, social interactions, responsive UI. Built with Laravel & Blade.</div>
-      <div class="proj-tags"><span class="proj-tag">Laravel</span> · <span class="proj-tag">PHP</span> · <span class="proj-tag">Blade</span></div>
-      <a class="proj-link" href="https://github.com/Soburr/Instagram-clone" target="_blank">View on GitHub →</a>
-    </div>
-    <div class="proj-card">
-      <div class="proj-num">03</div>
-      <div class="proj-name">Realtime Chat App</div>
-      <div class="proj-desc">Real-time messaging and collaboration built with Laravel and Livewire. Open-source and starred.</div>
-      <div class="proj-tags"><span class="proj-tag">Laravel</span> · <span class="proj-tag">Livewire</span> · <span class="proj-tag">Real-time</span></div>
-      <a class="proj-link" href="https://github.com/Soburr/Realtime_Lara_Chat" target="_blank">View on GitHub →</a>
-    </div>
-    <div class="proj-card">
-      <div class="proj-num">04</div>
-      <div class="proj-name">EduMetric</div>
-      <div class="proj-desc">Full-stack school portal with a scalable CBT engine for exam management, real-time testing, and analytics.</div>
-      <div class="proj-tags"><span class="proj-tag">Laravel</span> · <span class="proj-tag">Blade</span> · <span class="proj-tag">CBT Engine</span></div>
-      <a class="proj-link" href="https://github.com/Soburr/EduMetric" target="_blank">View on GitHub →</a>
-    </div>
-    <div class="proj-card">
-      <div class="proj-num">05</div>
-      <div class="proj-name">Quality Gadgets Hub</div>
-      <div class="proj-desc">eCommerce platform — product management, Paystack payments, admin dashboards, RBAC.</div>
-      <div class="proj-tags"><span class="proj-tag">Laravel</span> · <span class="proj-tag">Paystack</span> · <span class="proj-tag">eCommerce</span></div>
-      <a class="proj-link" href="https://github.com/Soburr/Quality-Gadgets-Hub" target="_blank">View on GitHub →</a>
-    </div>
-    <div class="proj-card">
-      <div class="proj-num">06</div>
-      <div class="proj-name">Cramp Relief App</div>
-      <div class="proj-desc">Single-file wellness companion. Heat therapy timer, guided breathing, affirmations. Zero dependencies.</div>
-      <div class="proj-tags"><span class="proj-tag">HTML</span> · <span class="proj-tag">Vanilla JS</span> · <span class="proj-tag">Zero deps</span></div>
-      <a class="proj-link" href="https://github.com/Soburr/Cramp-relief-frontend" target="_blank">View on GitHub →</a>
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-tag">Open source</div>
+    <h2 class="sec-title">FEATURED<br>PROJECTS</h2>
+    <div class="proj-grid reveal">
+      <div class="proj"><div class="proj-n">01 / 06</div><div class="proj-name">CraftConnect</div><div class="proj-desc">Laravel-powered artisan marketplace connecting customers with skilled service providers through bookings, KYC verification, and admin management.</div><div class="proj-stack"><span class="stk">Laravel</span><span class="stk">Blade</span><span class="stk">KYC</span></div><a class="proj-link" href="https://github.com/Soburr/CraftConnect" target="_blank">GitHub →</a></div>
+      <div class="proj"><div class="proj-n">02 / 06</div><div class="proj-name">Instagram Clone</div><div class="proj-desc">Instagram-inspired social platform with full auth, media sharing, social interactions, and responsive UI built with Laravel and Blade.</div><div class="proj-stack"><span class="stk">Laravel</span><span class="stk">PHP</span><span class="stk">Blade</span></div><a class="proj-link" href="https://github.com/Soburr/Instagram-clone" target="_blank">GitHub →</a></div>
+      <div class="proj"><div class="proj-n">03 / 06</div><div class="proj-name">Realtime Chat App</div><div class="proj-desc">Open-source real-time messaging app built with Laravel and Livewire for seamless, instant communication. Starred on GitHub.</div><div class="proj-stack"><span class="stk">Laravel</span><span class="stk">Livewire</span><span class="stk">Real-time</span></div><a class="proj-link" href="https://github.com/Soburr/Realtime_Lara_Chat" target="_blank">GitHub →</a></div>
+      <div class="proj"><div class="proj-n">04 / 06</div><div class="proj-name">EduMetric</div><div class="proj-desc">Full-stack school portal with a scalable CBT engine for exam management, real-time testing, and detailed result analytics.</div><div class="proj-stack"><span class="stk">Laravel</span><span class="stk">Blade</span><span class="stk">CBT</span></div><a class="proj-link" href="https://github.com/Soburr/EduMetric" target="_blank">GitHub →</a></div>
+      <div class="proj"><div class="proj-n">05 / 06</div><div class="proj-name">Quality Gadgets Hub</div><div class="proj-desc">eCommerce platform with product management, Paystack payments, role-based admin dashboards, and a 6-week MVP story.</div><div class="proj-stack"><span class="stk">Laravel</span><span class="stk">Paystack</span><span class="stk">MySQL</span></div><a class="proj-link" href="https://github.com/Soburr/Quality-Gadgets-Hub" target="_blank">GitHub →</a></div>
+      <div class="proj"><div class="proj-n">06 / 06</div><div class="proj-name">Cramp Relief App</div><div class="proj-desc">Single-file wellness companion with heat therapy timer, guided 4-7-8 breathing, and personal affirmations. Zero dependencies.</div><div class="proj-stack"><span class="stk">HTML</span><span class="stk">Vanilla JS</span><span class="stk">Zero deps</span></div><a class="proj-link" href="https://github.com/Soburr/Cramp-relief-frontend" target="_blank">GitHub →</a></div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- EDUCATION & CERTS -->
-<div style="background:var(--paper2)">
-<div class="section">
-  <div class="sec-header">
-    <span class="sec-num">04 —</span>
-    <h2 class="sec-title">Education & training</h2>
-  </div>
-  <div class="edu-block">
-    <div class="edu-year">2026</div>
-    <div><div class="edu-name">BSc. Physics</div><div class="edu-sub">University of Lagos</div></div>
-  </div>
-  <div class="edu-block">
-    <div class="edu-year">Aug – Oct 2023</div>
-    <div><div class="edu-name">Laravel Tutor</div><div class="edu-sub">Microsoft Learn Student Ambassadors Bootcamp, Unilag</div></div>
-  </div>
-  <div class="edu-block">
-    <div class="edu-year">Jul 2023</div>
-    <div><div class="edu-name">API Crash Course for Beginners</div><div class="edu-sub">Laracasts</div></div>
-  </div>
-  <div class="edu-block">
-    <div class="edu-year">Aug 2022</div>
-    <div><div class="edu-name">Building Admin Dashboards with Laravel Nova</div><div class="edu-sub">Laracasts</div></div>
-  </div>
-  <div class="edu-block">
-    <div class="edu-year">Mar 2021</div>
-    <div><div class="edu-name">PHP with Laravel for Beginners</div><div class="edu-sub">Udemy</div></div>
-  </div>
-  <div class="edu-block">
-    <div class="edu-year">2020 – 2021</div>
-    <div><div class="edu-name">Fast Laravel APIs & Apps with Blueprint</div><div class="edu-sub">Udemy</div></div>
-  </div>
-</div>
-</div>
-
-<!-- CONTACT -->
-<div id="contact-section">
-  <div class="contact-inner">
-    <div class="contact-big">Let's build<br>something <em>great</em><br>together.</div>
-    <div class="contact-row">
-      <div class="c-item"><div class="c-label">Email</div><div class="c-val"><a href="mailto:adebesinnewton99@gmail.com">adebesinnewton99@gmail.com</a></div></div>
-      <div class="c-item"><div class="c-label">Phone</div><div class="c-val"><a href="tel:+2348140902526">0814 090 2526</a></div></div>
-      <div class="c-item"><div class="c-label">GitHub</div><div class="c-val"><a href="https://github.com/Soburr" target="_blank">github.com/Soburr</a></div></div>
-      <div class="c-item"><div class="c-label">LinkedIn</div><div class="c-val"><a href="https://www.linkedin.com/in/adebesin-adewunmi-334897220/" target="_blank">Adebesin Adewunmi</a></div></div>
+<section id="education">
+  <div class="wrap">
+    <div class="sec-tag">Background</div>
+    <h2 class="sec-title">EDUCATION &<br>TRAINING</h2>
+    <div class="reveal">
+      <div class="edu-row"><div class="edu-yr">2026</div><div><div class="edu-name">BSc. Physics</div><div class="edu-sub">University of Lagos</div></div></div>
+      <div class="edu-row"><div class="edu-yr">Aug – Oct 2023</div><div><div class="edu-name">Laravel Tutor</div><div class="edu-sub">Microsoft Learn Student Ambassadors Bootcamp, Unilag</div></div></div>
+      <div class="edu-row"><div class="edu-yr">Jul 2023</div><div><div class="edu-name">API Crash Course for Beginners</div><div class="edu-sub">Laracasts</div></div></div>
+      <div class="edu-row"><div class="edu-yr">Aug 2022</div><div><div class="edu-name">Building Admin Dashboards with Laravel Nova</div><div class="edu-sub">Laracasts</div></div></div>
+      <div class="edu-row"><div class="edu-yr">Mar 2021</div><div><div class="edu-name">PHP with Laravel for Beginners</div><div class="edu-sub">Udemy</div></div></div>
+      <div class="edu-row"><div class="edu-yr">2020 – 2021</div><div><div class="edu-name">Fast Laravel APIs & Apps with Blueprint</div><div class="edu-sub">Udemy</div></div></div>
     </div>
   </div>
-</div>
+</section>
+
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="sec-tag">Let's talk</div>
+    <div class="contact-headline reveal">
+      LET'S BUILD<br>SOMETHING<br><span class="gold">GREAT.</span>
+    </div>
+    <p class="contact-sub">Open to backend and fullstack engineering roles — remote or Lagos-based. If you're building something ambitious, I'd love to be part of it.</p>
+    <div class="contact-cards reveal">
+      <a class="c-card" href="mailto:adebesinnewton99@gmail.com"><div class="c-icon">✉</div><div><div class="c-lbl">Email</div><div class="c-val">adebesinnewton99@gmail.com</div></div></a>
+      <a class="c-card" href="tel:+2348140902526"><div class="c-icon">📞</div><div><div class="c-lbl">Phone</div><div class="c-val">0814 090 2526</div></div></a>
+      <a class="c-card" href="https://github.com/Soburr" target="_blank"><div class="c-icon">🐙</div><div><div class="c-lbl">GitHub</div><div class="c-val">github.com/Soburr</div></div></a>
+      <a class="c-card" href="https://www.linkedin.com/in/adebesin-adewunmi-334897220/" target="_blank"><div class="c-icon">💼</div><div><div class="c-lbl">LinkedIn</div><div class="c-val">Adebesin Adewunmi</div></div></a>
+    </div>
+    <div class="download-bar reveal">
+      <div><div class="dl-text">Want the full picture?</div><div class="dl-sub">Download my CV to share with your team or keep on file.</div></div>
+      <a class="dl-btn" href="Adebesin_Adewunmi_Resume.docx" download>↓ Download CV</a>
+    </div>
+  </div>
+</section>
 
 <footer>
-  <span>Adebesin Adewunmi — Backend Engineer</span>
-  <span>Lagos, Nigeria · 2025</span>
+  <p>© 2025 Adebesin Adewunmi · Lagos, Nigeria</p>
+  <div class="footer-links">
+    <a href="https://github.com/Soburr" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/adebesin-adewunmi-334897220/" target="_blank">LinkedIn</a>
+    <a href="mailto:adebesinnewton99@gmail.com">Email</a>
+  </div>
 </footer>
 
 <script>
-const dot = document.getElementById('dot');
-document.addEventListener('mousemove', e => {
-  dot.style.left = e.clientX + 'px';
-  dot.style.top = e.clientY + 'px';
-});
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)} });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
